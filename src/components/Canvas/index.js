@@ -22,12 +22,6 @@ const Canvas = () => {
   const pptsData = useSelector((state) => state.pptsData);
 
   useEffect(() => {
-    const c = canvas.current;
-    const { clientWidth, clientHeight } = canvasWrapper.current;
-
-    c.width = clientWidth;
-    c.height = clientHeight;
-
     getContextAndReDraw();
     window.addEventListener("resize", getContextAndReDraw);
 
