@@ -1,4 +1,11 @@
-import { SET_COLOR, SET_OPACITY, SET_LINE_WIDTH } from "./types";
+import {
+  SET_COLOR,
+  SET_OPACITY,
+  SET_LINE_WIDTH,
+  SET_TOOL,
+  SET_ZOOM,
+  SET_DATA,
+} from "./types";
 
 export const setColor = (color) => ({
   type: SET_COLOR,
@@ -13,4 +20,19 @@ export const setOpacity = (opacity) => ({
 export const setLineWidth = (lineWidth) => ({
   type: SET_LINE_WIDTH,
   payload: { lineWidth },
+});
+
+export const setTool = (tool) => ({
+  type: SET_TOOL,
+  payload: { tool },
+});
+
+export const setZoom = (zoom) => ({
+  type: SET_ZOOM,
+  payload: { zoom },
+});
+
+export const setData = (data) => ({
+  type: SET_DATA,
+  payload: { data },
 });
