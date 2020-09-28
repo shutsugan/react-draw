@@ -28,14 +28,30 @@ const Canvas = () => {
     c.width = clientWidth;
     c.height = clientHeight;
 
-    const currentContext = c.getContext("2d");
+    getContextAndReDraw();
+    window.addEventListener("resize", getContextAndReDraw);
 
+    return () => {
+      window.removeEventListener("resize", getContextAndReDraw);
+    };
+  }, [pptsData]);
+
+  const getContextAndReDraw = () => {
+    const c = canvas.current;
+    const { clientWidth, clientHeight } = canvasWrapper.current;
+
+    c.width = clientWidth;
+    c.height = clientHeight;
+
+    const currentContext = c.getContext("2d");
     setContext(currentContext);
 
     if (pptsData.length) {
       pptsData.forEach((data) => drawFromData(data, currentContext));
     }
-  }, [pptsData]);
+
+    return currentContext;
+  };
 
   const setContextOptions = (ctx, options) => {
     const {
@@ -86,8 +102,11 @@ const Canvas = () => {
   };
 
   const stopDrawing = () => {
+    if (ppts.length) {
+      dispatch(setData({ ppts, color, opacity, lineWidth, zoom, tool }));
+    }
+
     setIsDrawing(false);
-    dispatch(setData({ ppts, color, opacity, lineWidth, zoom, tool }));
     setPpts([]);
   };
 
@@ -127,7 +146,6 @@ const Canvas = () => {
         onMouseMove={startDrawing}
         onMouseUp={stopDrawing}
         onMouseLeave={stopDrawing}
-        // style={{ transform: `scale(${zoom})` }}
       />
     </div>
   );

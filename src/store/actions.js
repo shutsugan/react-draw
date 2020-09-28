@@ -5,6 +5,7 @@ import {
   SET_TOOL,
   SET_ZOOM,
   SET_DATA,
+  UNDO,
 } from "./types";
 
 export const setColor = (color) => ({
@@ -35,4 +36,8 @@ export const setZoom = (zoom) => ({
 export const setData = (data) => ({
   type: SET_DATA,
   payload: { data },
+});
+
+export const undoLast = () => ({
+  type: UNDO,
 });

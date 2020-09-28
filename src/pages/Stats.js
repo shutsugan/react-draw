@@ -9,7 +9,9 @@ const Stats = () => {
   const pptsData = useSelector((state) => state.pptsData);
 
   useEffect(() => {
-    var result = {};
+    const result = {};
+    const chartData = [];
+
     pptsData.forEach(({ color }) => {
       result[color] = {
         color: color,
@@ -17,7 +19,6 @@ const Stats = () => {
       };
     });
 
-    const chartData = [];
     for (const prop in result) {
       const chartObj = result[prop];
       chartData.push({ color: chartObj.color, count: chartObj.count });
@@ -27,8 +28,8 @@ const Stats = () => {
   }, [pptsData]);
 
   return (
-    <div>
-      <Chart title="rawn objects" xKey="color" yKey="count" data={drawings} />
+    <div className="flex justify-center">
+      <Chart title="Drawn objects" xKey="color" yKey="count" data={drawings} />
     </div>
   );
 };

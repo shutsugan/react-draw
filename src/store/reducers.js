@@ -5,6 +5,7 @@ import {
   SET_TOOL,
   SET_ZOOM,
   SET_DATA,
+  UNDO,
 } from "./types";
 
 export const initialState = {
@@ -49,6 +50,12 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         pptsData: Array.isArray(data) ? data : [...state.pptsData, data],
+      };
+    }
+    case UNDO: {
+      return {
+        ...state,
+        pptsData: [...state.pptsData.slice(0, -1)],
       };
     }
     default:

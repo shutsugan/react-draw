@@ -22,7 +22,7 @@ const RightPanel = () => {
     a: opacity,
   });
 
-  const debounceDelay = 300;
+  const debounceDelay = 400;
   const [debouncedColor] = useDebounce(currentColor, debounceDelay);
   const [debouncedAlpha] = useDebounce(currentAlpha, debounceDelay);
 
@@ -31,7 +31,6 @@ const RightPanel = () => {
   };
 
   const handleAlphaChange = ({ rgb }) => {
-    console.log(rgb);
     setColorWithAlpha(rgb);
     setCurrentAlpha(rgb.a);
   };

@@ -29,6 +29,10 @@ body {
   align-items: center;
 }
 
+.justify-center {
+  justify-content: center;
+}
+
 .w-full {
   width: 100%;
 }
@@ -51,7 +55,7 @@ body {
 
 .canvas {
   cursor: crosshair;
-  -webkit-transform-origin: 0 0;
+  transform-origin: 0 0;
 }
 
 .right-panel {

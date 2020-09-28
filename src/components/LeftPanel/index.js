@@ -8,12 +8,12 @@ import Erase from "../../assets/erase.svg";
 
 const LeftPanel = () => {
   const dispatch = useDispatch();
-
   const currentTool = useSelector((state) => state.tool);
 
   const handleToolChange = (tool) => {
     dispatch(setTool(tool));
   };
+
   return (
     <div className="left-panel flex flex-col">
       <button
