@@ -7,21 +7,26 @@ const Stats = () => {
   const [drawings, setDrawings] = useState([]);
 
   const pptsData = useSelector((state) => state.pptsData);
+  const lineWidth = useSelector((state) => state.lineWidth);
 
   useEffect(() => {
     const result = {};
     const chartData = [];
 
-    pptsData.forEach(({ color }) => {
+    pptsData.forEach(({ ppts, color }) => {
       result[color] = {
         color: color,
-        count: ((result[color] && result[color].count) || 0) + 1,
+        count: ((result[color] && result[color].count) || 0) + ppts.length,
       };
     });
 
     for (const prop in result) {
       const chartObj = result[prop];
-      chartData.push({ color: chartObj.color, count: chartObj.count });
+      chartData.push({
+        color: chartObj.color,
+        count: chartObj.count,
+        area: chartObj.count * lineWidth,
+      });
     }
 
     setDrawings(chartData);

@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { setData } from "../../store/actions";
+import Cursor from "../Cursor";
 
 const Canvas = () => {
   const dispatch = useDispatch();
@@ -131,8 +132,22 @@ const Canvas = () => {
     }
   };
 
+  const handleDrawByClick = (event) => {
+    const { currentX, currentY } = getMounsePosition(event);
+
+    context.beginPath();
+    setContextOptions(context, { color, opacity, lineWidth, tool, zoom });
+    context.moveTo(prevX, prevY);
+    context.lineTo(currentX, currentY);
+    context.closePath();
+    context.stroke();
+  };
+
   return (
     <div ref={canvasWrapper} className="canvas-wrapper w-full h-full">
+      <div className="relative">
+        <Cursor x={prevX} y={prevY} />
+      </div>
       <canvas
         ref={canvas}
         className="canvas"
@@ -140,6 +155,7 @@ const Canvas = () => {
         onMouseMove={startDrawing}
         onMouseUp={stopDrawing}
         onMouseLeave={stopDrawing}
+        onClick={handleDrawByClick}
       />
     </div>
   );

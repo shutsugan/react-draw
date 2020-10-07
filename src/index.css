@@ -112,3 +112,21 @@ body {
   cursor: pointer;
   text-decoration: none;
 }
+
+.cursor {
+  position: absolute;
+  border: solid 1px #ddd;
+  border-radius: 100%;
+}
+
+.relative {
+  position: relative;
+}
+
+.z-10 {
+  z-index: 10;
+}
+
+.cursor {
+  pointer-events: none;
+}
